@@ -20,7 +20,7 @@ jobs:
     - name: Validate links
       uses: 1005789164/push-action@master
       with:
-        github_token: "majunlaila100"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         username: "1005789164"
         repository: "1005789164/save"
         directory: "./.github"
