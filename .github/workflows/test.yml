@@ -1,0 +1,20 @@
+name: Validate links
+
+on:
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    name: Validate links
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Validate links
+      uses: 1005789164/push-action@master
+      with:
+        github_token: "majunlaila100"
+        username: "1005789164"
+        repository: "1005789164/save"
+        directory: "./.github"
+        

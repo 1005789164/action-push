@@ -8,10 +8,17 @@ inputs:
   github_token:
     description: 'Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}'
     required: true
+  username:
+    description: 'Account username'
+    required: true
   repository:
     description: 'Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})'
-    default: ''
     required: false
+    default: ''
+  directory:
+    description: 'Directory to change to before pushing.'
+    required: false
+    default: '.'
   branch:
     description: 'Destination branch to push changes'
     required: false
@@ -22,10 +29,6 @@ inputs:
   tags:
     description: 'Determines if --tags is used'
     required: false
-  directory:
-    description: 'Directory to change to before pushing.'
-    required: false
-    default: '.'
 runs:
   using: 'node12'
   main: 'start.js'
