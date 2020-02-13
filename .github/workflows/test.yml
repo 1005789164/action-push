@@ -14,4 +14,4 @@ jobs:
       uses: 1005789164/push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        
+        folder: true

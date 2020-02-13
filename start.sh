@@ -38,7 +38,7 @@ fi
 
 git config --local user.email "${INPUT_USER_EMAIL}"
 git config --local user.name "${INPUT_USER_NAME}"
-touch abcd
+touch a b c d e
 git add ./
 git commit -m "${INPUT_COMMIT_MSG}" -a
 

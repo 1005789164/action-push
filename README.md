@@ -34,7 +34,7 @@ jobs:
 | user_email | string | 'action@github.com' | git config --local user.email "action@github.com" |
 | user_name | string | 'GitHub Action' | git config --local user.name "GitHub Action" |
 | directory | string | '.' | Directory to change to before pushing. |
-| folder | string | false | Include a folder. |
+| folder | boolean | false | Include a folder. |
 | commit_msg | string | 'Add changes' | git commit -m "Add changes" -a |
 | branch | string | 'master' | Destination branch to push changes. |
 | force | boolean | false | Determines if force push is used. |
