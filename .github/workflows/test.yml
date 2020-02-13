@@ -10,16 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        touch testtesttest
-        git add ./
-        git commit -m "Add changes" -a
     - name: Validate links
       uses: 1005789164/push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        username: "1005789164"
         
