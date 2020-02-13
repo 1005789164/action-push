@@ -40,7 +40,7 @@ git config --local user.email "${INPUT_USER_EMAIL}"
 
 git config --local user.name "${INPUT_USER_NAME}"
 
-git add ./
+git add -f ./
 
 git commit -m "${INPUT_COMMIT_MSG}" -a
 
