@@ -1,9 +1,6 @@
 #!/bin/sh
 set -e
 
-REPOSITORY=${INPUT_REPOSITORY:-$GITHUB_REPOSITORY}
-INPUT_DIRECTORY=${INPUT_DIRECTORY:-'.'}
-INPUT_BRANCH=${INPUT_BRANCH:-master}
 INPUT_FORCE=${INPUT_FORCE:-false}
 INPUT_TAGS=${INPUT_TAGS:-false}
 _FORCE_OPTION=''
@@ -16,21 +13,23 @@ echo "Push to branch $INPUT_BRANCH";
     exit 1;
 };
 
-[ -z "${INPUT_USERNAME}" ] && {
-    exit 1;
-};
-
-if ${INPUT_FORCE}; then
+if $INPUT_FORCE; then
     _FORCE_OPTION='--force'
 fi
 
-if ${TAGS}; then
+if $INPUT_TAGS; then
     _TAGS_OPTION='--tags'
 fi
 
 cd ${INPUT_DIRECTORY}
 
-remote_repo="https://${INPUT_USERNAME}:${INPUT_GITHUB_TOKEN}@github.com/${REPOSITORY}.git"
+git config --local user.email "${INPUT_USER_EMAIL}"
+git config --local user.name "${INPUT_USER_NAME}"
+touch abc
+git add ./
+git commit -m "${INPUT_COMMIT_MSG}" -a
+
+remote_repo = "https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
