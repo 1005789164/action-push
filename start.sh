@@ -27,9 +27,7 @@ cd ${INPUT_DIRECTORY}
 
 if $INPUT_FOLDER; then
     current=`date "+%Y-%m-%d %H:%M:%S"`
-    timeStamp=`date -d "$current" +%s`
-    #将current转换为时间戳，精确到毫秒
-    currentTimeStamp=$((timeStamp*1000+$(10#$(`date "+%N"`/1000000))))
+    currentTimeStamp=`date -d "$current" +%s`
     _FOLDER_OPTION=$currentTimeStamp
     mkdir -p ../d_tmp && cp -rpf * ../d_tmp
     mkdir -p $_FOLDER_OPTION && mv ../d_tmp/* $_FOLDER_OPTION
