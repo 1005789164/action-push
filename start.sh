@@ -21,6 +21,8 @@ if $INPUT_TAGS; then
     _TAGS_OPTION='--tags'
 fi
 
+echo ${INPUT_DIRECTORY}"\n" && echo ${GITHUB_WORKSPACE}"\n"
+
 if [ ${INPUT_DIRECTORY} != ${GITHUB_WORKSPACE} ]; then
     cd ${INPUT_DIRECTORY}
     mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
