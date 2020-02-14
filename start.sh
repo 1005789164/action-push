@@ -3,7 +3,6 @@ set -e
 
 INPUT_FORCE=${INPUT_FORCE:-false}
 INPUT_TAGS=${INPUT_TAGS:-false}
-INPUT_FOLDER=${INPUT_FOLDER:-false}
 _FORCE_OPTION=''
 _TAGS_OPTION=''
 
@@ -21,6 +20,8 @@ fi
 if $INPUT_TAGS; then
     _TAGS_OPTION='--tags'
 fi
+
+cd ${INPUT_DIRECTORY}
 
 mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
 
