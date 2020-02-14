@@ -29,9 +29,8 @@ if $INPUT_FOLDER; then
     current=`date "+%Y-%m-%d %H:%M:%S"`
     currentTimeStamp=`date -d "$current" +%s`
     _FOLDER_OPTION=$currentTimeStamp
-    mkdir -p ../d_tmp && cp -rpf * ../d_tmp
-    mkdir -p $_FOLDER_OPTION && mv ../d_tmp/* $_FOLDER_OPTION
-    rm -rf ../d_tmp && cd $_FOLDER_OPTION
+    mkdir -p ${GITHUB_WORKSPACE}/$_FOLDER_OPTION && cp -rpf * ${GITHUB_WORKSPACE}/$_FOLDER_OPTION
+    cd ${GITHUB_WORKSPACE}/$_FOLDER_OPTION
 fi
 
 git config --local user.email "${INPUT_USER_EMAIL}"
@@ -46,3 +45,4 @@ remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_R
 
 git push --force "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
+rm -rf ${GITHUB_WORKSPACE}/$_FOLDER_OPTION
