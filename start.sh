@@ -21,11 +21,11 @@ if $INPUT_TAGS; then
     _TAGS_OPTION='--tags'
 fi
 
-cd ${INPUT_DIRECTORY}
-
-mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
-
-cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
+if [ ${INPUT_DIRECTORY} != ${GITHUB_WORKSPACE} ]; then
+    cd ${INPUT_DIRECTORY}
+    mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
+    cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
+fi
 
 git config --local user.email "${INPUT_USER_EMAIL}"
 
@@ -39,4 +39,6 @@ remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_R
 
 git push --force "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
-cd ../ && rm -rf ${INPUT_FOLDER}
+if [ ${INPUT_DIRECTORY} != ${GITHUB_WORKSPACE} ]; then
+    cd ../ && rm -rf ${INPUT_FOLDER}
+fi
