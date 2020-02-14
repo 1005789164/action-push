@@ -21,9 +21,9 @@ if $INPUT_TAGS; then
     _TAGS_OPTION='--tags'
 fi
 
-echo ${INPUT_DIRECTORY}"\n" && echo ${GITHUB_WORKSPACE}"\n"
+echo ${GITHUB_WORKSPACE} && echo ${INPUT_DIRECTORY}
 
-if [ ${INPUT_DIRECTORY} != ${GITHUB_WORKSPACE} ]; then
+if [ ${INPUT_DIRECTORY} != "." ]; then
     cd ${INPUT_DIRECTORY}
     mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
     cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
@@ -41,6 +41,6 @@ remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_R
 
 git push --force "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
-if [ ${INPUT_DIRECTORY} != ${GITHUB_WORKSPACE} ]; then
+if [ ${INPUT_DIRECTORY} != "." ]; then
     cd ../ && rm -rf ${INPUT_FOLDER}
 fi
