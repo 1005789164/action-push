@@ -23,6 +23,7 @@ inputs:
   folder:
     description: 'Include a folder.'
     required: false
+    default: 'dir_upload'
   commit_msg:
     description: 'git commit -m "Add changes" -a'
     required: false

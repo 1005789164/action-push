@@ -6,7 +6,6 @@ INPUT_TAGS=${INPUT_TAGS:-false}
 INPUT_FOLDER=${INPUT_FOLDER:-false}
 _FORCE_OPTION=''
 _TAGS_OPTION=''
-_FOLDER_OPTION=''
 
 
 echo "Push to branch $INPUT_BRANCH";
@@ -23,15 +22,9 @@ if $INPUT_TAGS; then
     _TAGS_OPTION='--tags'
 fi
 
-cd ${INPUT_DIRECTORY}
+mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
 
-if $INPUT_FOLDER; then
-    current=`date "+%Y-%m-%d %H:%M:%S"`
-    currentTimeStamp=`date -d "$current" +%s`
-    _FOLDER_OPTION=$currentTimeStamp
-    mkdir -p ${GITHUB_WORKSPACE}/$_FOLDER_OPTION && cp -rpf * ${GITHUB_WORKSPACE}/$_FOLDER_OPTION
-    cd ${GITHUB_WORKSPACE}/$_FOLDER_OPTION
-fi
+cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
 
 git config --local user.email "${INPUT_USER_EMAIL}"
 
@@ -45,4 +38,4 @@ remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_R
 
 git push --force "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
-rm -rf ${GITHUB_WORKSPACE}/$_FOLDER_OPTION
+cd ../ && rm -rf ${INPUT_FOLDER}
