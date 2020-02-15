@@ -37,7 +37,7 @@ git add -f ./
 
 git commit -m "${INPUT_COMMIT_MSG}" -a
 
-remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+remote_repo="https://${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 git push --force "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
