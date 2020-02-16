@@ -30,8 +30,9 @@ fi
 
 echo ${GITHUB_WORKSPACE} && echo ${INPUT_DIRECTORY}
 
-if [ ${INPUT_DIRECTORY} != "./" ]; then
-    cd ${INPUT_DIRECTORY}
+cd ${INPUT_DIRECTORY}
+
+if [ $(pwd) != ${GITHUB_WORKSPACE} ]; then
     mkdir -p ${GITHUB_WORKSPACE}/${INPUT_FOLDER} && cp -rpf * ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
     cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
 fi
@@ -48,6 +49,8 @@ remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 git push --force $remote_repo HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
-if [ ${INPUT_DIRECTORY} != "." ]; then
-    cd ../ && rm -rf ${INPUT_FOLDER}
+cd ${INPUT_DIRECTORY}
+
+if [ $(pwd) != ${GITHUB_WORKSPACE} ]; then
+    cd ${GITHUB_WORKSPACE} && rm -rf ${INPUT_FOLDER}
 fi
