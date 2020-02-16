@@ -41,13 +41,15 @@ git config --local user.email "${INPUT_USER_EMAIL}"
 
 git config --local user.name "${INPUT_USER_NAME}"
 
+remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+git remote add publisher $remote_repo
+
 git add -f ./
 
 git commit -m "${INPUT_COMMIT_MSG}" -a
 
-remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-
-git push --force $remote_repo HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
+git push --force publisher ${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
 cd ${INPUT_DIRECTORY}
 
