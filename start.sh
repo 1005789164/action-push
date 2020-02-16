@@ -15,7 +15,7 @@ _TAGS_OPTION=''
 
 
 echo "Push to branch $INPUT_BRANCH";
-[ -z "${INPUT_GITHUB_TOKEN}" ] && {
+[ -z "${INPUT_YOU_TOKEN}" ] && {
     echo 'Missing input "github_token: ${{ secrets.GITHUB_TOKEN }}".';
     exit 1;
 };
