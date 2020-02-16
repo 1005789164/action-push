@@ -30,10 +30,10 @@ jobs:
 
 | name | value | default | description |
 | ---- | ----- | ------- | ----------- |
-| github_token | string | | Token for the repo. Can be passed in using `${{ secrets.GITHUB_TOKEN }}`. |
+| you_token | string | | Token for the repo. Can be passed in using `${{ secrets.GITHUB_TOKEN }}`. |
 | user_email | string | 'action@github.com' | git config --local user.email "action@github.com" |
 | user_name | string | 'GitHub Action' | git config --local user.name "GitHub Action" |
-| directory | string | '.' | Directory to change to before pushing. |
+| directory | string | './' | Directory to change to before pushing. |
 | folder | string | 'dir_upload' | Include a folder. |
 | commit_msg | string | 'Add changes' | git commit -m "Add changes" -a |
 | branch | string | 'master' | Destination branch to push changes. |
