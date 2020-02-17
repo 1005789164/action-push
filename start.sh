@@ -43,13 +43,13 @@ git config --local user.name "${INPUT_USER_NAME}"
 
 remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
-git remote set-url origin $remote_repo
+git remote -v
 
 git add -f ./
 
 git commit -m "${INPUT_COMMIT_MSG}" -a
 
-git push --force origin ${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
+git push --force $remote_repo ${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
 cd ${INPUT_DIRECTORY}
 
