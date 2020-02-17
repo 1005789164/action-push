@@ -37,19 +37,19 @@ if [ $(pwd) != ${GITHUB_WORKSPACE} ]; then
     cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
 fi
 
-git config --global user.email "${INPUT_USER_EMAIL}"
+git config --local user.email "${INPUT_USER_EMAIL}"
 
-git config --global user.name "${INPUT_USER_NAME}"
+git config --local user.name "${INPUT_USER_NAME}"
 
 remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
-git remote add publisher $remote_repo
+git remote set-url origin $remote_repo
 
 git add -f ./
 
 git commit -m "${INPUT_COMMIT_MSG}" -a
 
-git push --force publisher ${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
+git push --force origin ${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
 cd ${INPUT_DIRECTORY}
 
