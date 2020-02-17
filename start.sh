@@ -37,9 +37,9 @@ if [ $(pwd) != ${GITHUB_WORKSPACE} ]; then
     cd ${GITHUB_WORKSPACE}/${INPUT_FOLDER}
 fi
 
-git config --local user.email "${INPUT_USER_EMAIL}"
+git config --global user.email "${INPUT_USER_EMAIL}"
 
-git config --local user.name "${INPUT_USER_NAME}"
+git config --global user.name "${INPUT_USER_NAME}"
 
 remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
