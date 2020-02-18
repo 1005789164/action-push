@@ -8,26 +8,14 @@ inputs:
   you_token:
     description: 'Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}.'
     required: true
-  user_email:
-    description: 'git config --local user.email "action@github.com"'
+  repository:
+    description: 'Repository name. Default or empty repository name represents current github repository. If you want to push to other repository, you should make a personal access token and use it as the github_token input.'
     required: false
-    default: 'action@github.com'
-  user_name:
-    description: 'git config --local user.name "GitHub Action"'
-    required: false
-    default: 'GitHub Action'
+    default: ''
   directory:
     description: 'Directory to change to before pushing.'
     required: false
     default: './'
-  folder:
-    description: 'Include a folder.'
-    required: false
-    default: 'dir_upload'
-  commit_msg:
-    description: 'git commit -m "Add changes" -a'
-    required: false
-    default: 'Add changes'
   branch:
     description: 'Destination branch to push changes.'
     required: false

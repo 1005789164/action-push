@@ -2,6 +2,7 @@
 set -e
 
 INPUT_YOU_TOKEN=${INPUT_YOU_TOKEN:-$GITHUB_TOKEN}
+INPUT_REPOSITORY=${INPUT_REPOSITORY:-$GITHUB_REPOSITORY}
 INPUT_DIRECTORY=${INPUT_DIRECTORY:-'./'}
 INPUT_BRANCH=${INPUT_BRANCH:-'master'}
 INPUT_FORCE=${INPUT_FORCE:-false}
@@ -26,7 +27,7 @@ fi
 
 cd ${INPUT_DIRECTORY}
 
-remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${INPUT_REPOSITORY}.git"
 
 git push --force $remote_repo HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 

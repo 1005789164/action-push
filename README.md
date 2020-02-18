@@ -20,6 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Add and commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+	  git add ./
+        git commit -m "Add changes" -a
     - name: Push changes
       uses: 1005789164/push-action@master
       with:
@@ -31,11 +37,8 @@ jobs:
 | name | value | default | description |
 | ---- | ----- | ------- | ----------- |
 | you_token | string | | Token for the repo. Can be passed in using `${{ secrets.GITHUB_TOKEN }}`. |
-| user_email | string | 'action@github.com' | git config --local user.email "action@github.com" |
-| user_name | string | 'GitHub Action' | git config --local user.name "GitHub Action" |
+| repository | string | '' | Repository name. Default or empty repository name represents current github repository. If you want to push to other repository, you should make a personal access token and use it as the github_token input. |
 | directory | string | './' | Directory to change to before pushing. |
-| folder | string | 'dir_upload' | Include a folder. |
-| commit_msg | string | 'Add changes' | git commit -m "Add changes" -a |
 | branch | string | 'master' | Destination branch to push changes. |
 | force | boolean | false | Determines if force push is used. |
 | tags | boolean | false | Determines if `--tags` is used. |
