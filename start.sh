@@ -27,7 +27,7 @@ fi
 
 cd ${INPUT_DIRECTORY}
 
-remote_repo="https://${INPUT_YOU_TOKEN}@github.com/${INPUT_REPOSITORY}.git"
+remote_repo="https://${GITHUB_ACTOR}:${INPUT_YOU_TOKEN}@github.com/${INPUT_REPOSITORY}.git"
 
-git push --force $remote_repo HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
+git push $remote_repo HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS_OPTION
 
